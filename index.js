@@ -932,15 +932,1119 @@ function remove() {
 
 // Based on the answers you've actually attempted:
 
-// ```text
-// map       → ⭐⭐⭐⭐☆
-// filter    → ⭐⭐⭐⭐⭐
-// find      → ⭐⭐⭐⭐⭐
-// some      → ⭐⭐⭐⭐⭐
-// every     → ⭐⭐⭐⭐⭐
-// reduce    → ⭐⭐☆☆☆
-// sort      → not attempted yet
-// forEach   → not attempted yet
+// // ```text
+// // map       → ⭐⭐⭐⭐☆
+// // filter    → ⭐⭐⭐⭐⭐
+// // find      → ⭐⭐⭐⭐⭐
+// // some      → ⭐⭐⭐⭐⭐
+// // every     → ⭐⭐⭐⭐⭐
+// // reduce    → ⭐⭐☆☆☆
+// // sort      → not attempted yet
+// // forEach   → not attempted yet
+// // ```
+
+// // The next step that will help you most is to attempt **questions 7–10 yourself**, especially the `sort()` and `reduce()` combinations, without looking at the answers.
+// Yes. I pulled together the **JavaScript questions and answers you worked on today (September 7, 2026)** from our conversations. I’ve included your answer where you gave one, then the **corrected/interview-ready answer**.
+
+// # 1. Data Types — Interview Questions
+
+// ### Q1. Is JavaScript statically typed or dynamically typed?
+
+// **Your answer:** Correct — JavaScript is dynamically typed.
+
+// **Correct answer:**
+// JavaScript is **dynamically typed**, meaning a variable doesn't have a fixed type. The value currently stored in it has a type.
+
+// ```js
+// let x = 10;
+// x = "Hello";
+// x = true;
 // ```
 
-// The next step that will help you most is to attempt **questions 7–10 yourself**, especially the `sort()` and `reduce()` combinations, without looking at the answers.
+// The same binding can refer to values of different types.
+
+// ---
+
+// ### Q2. How are primitive values copied?
+
+// **Your answer:** Correct.
+
+// **Answer:**
+// Primitive values are copied by value.
+
+// ```js
+// let a = 10;
+// let b = a;
+
+// b = 20;
+
+// console.log(a); // 10
+// console.log(b); // 20
+// ```
+
+// `b` receives its own value.
+
+// ---
+
+// ### Q3. What happens when two variables reference the same object?
+
+// **Your answer:** Correct.
+
+// ```js
+// const user = {
+//     name: "Bhavya"
+// };
+
+// const copy = user;
+
+// copy.name = "Rahul";
+
+// console.log(user.name); // Rahul
+// ```
+
+// Both variables contain a reference to the **same object**.
+
+// ---
+
+// ### Q4. Why are these different?
+
+// ```js
+// {} === {}
+// ```
+
+// **Your answer:** Correct.
+
+// **Answer:**
+
+// ```js
+// {} === {} // false
+// ```
+
+// Each object is a different object with a different identity.
+
+// But:
+
+// ```js
+// const a = {};
+// const b = a;
+
+// a === b; // true
+// ```
+
+// Both variables reference the same object.
+
+// ---
+
+// ### Q5. What happens when an object is passed to a function?
+
+// **Your answer:** Correct.
+
+// ```js
+// function change(obj) {
+//     obj.name = "Rahul";
+// }
+
+// const user = {
+//     name: "Bhavya"
+// };
+
+// change(user);
+
+// console.log(user.name); // Rahul
+// ```
+
+// JavaScript is **pass-by-value**. For an object, the value being copied is a reference to the same object.
+
+// ---
+
+// ### Q6. What happens if the parameter itself is reassigned?
+
+// ```js
+// function change(obj) {
+//     obj = {
+//         name: "Rahul"
+//     };
+// }
+
+// const user = {
+//     name: "Bhavya"
+// };
+
+// change(user);
+
+// console.log(user.name);
+// ```
+
+// **Your answer:** Correct.
+
+// Output:
+
+// ```text
+// Bhavya
+// ```
+
+// The parameter gets its own copied reference. Reassigning the parameter doesn't change the caller's variable.
+
+// ---
+
+// ### Q7. What does `typeof` return?
+
+// You worked through:
+
+// ```js
+// typeof 10
+// typeof "hello"
+// typeof true
+// typeof undefined
+// typeof null
+// typeof {}
+// typeof []
+// typeof function(){}
+// typeof 10n
+// typeof Symbol()
+// typeof NaN
+// ```
+
+// **Correct answers:**
+
+// ```text
+// number
+// string
+// boolean
+// undefined
+// object
+// object
+// object
+// function
+// bigint
+// symbol
+// number
+// ```
+
+// Important:
+
+// ```js
+// typeof null // "object"
+// typeof NaN  // "number"
+// ```
+
+// These are common interview questions.
+
+// ---
+
+// ### Q8. What is the result?
+
+// ```js
+// console.log(NaN === NaN);
+// console.log(typeof NaN);
+// console.log(Number.isNaN(NaN));
+// ```
+
+// **Your answer:** Correct.
+
+// ```text
+// false
+// number
+// true
+// ```
+
+// `NaN` is a special value of the Number type, and it is not equal to itself using `===`.
+
+// ---
+
+// ### Q9. Why does this happen?
+
+// ```js
+// 0.1 + 0.2 === 0.3
+// ```
+
+// **Answer:**
+
+// ```js
+// false
+// ```
+
+// JavaScript `Number` uses IEEE-754 double-precision floating-point representation. Values such as `0.1` and `0.2` cannot be represented exactly in binary, so their sum contains a tiny floating-point error.
+
+// For production financial calculations, don't rely on ordinary floating-point arithmetic for exact decimal money calculations.
+
+// ---
+
+// ### Q10. What happens here?
+
+// ```js
+// const x = { value: 10 };
+// const y = x;
+
+// x = { value: 20 };
+// ```
+
+// You also learned the important distinction between:
+
+// ```js
+// x.value = 20;
+// ```
+
+// and:
+
+// ```js
+// x = { value: 20 };
+// ```
+
+// Mutation:
+
+// ```js
+// x.value = 20;
+// ```
+
+// changes the existing object.
+
+// Reassignment:
+
+// ```js
+// x = { value: 20 };
+// ```
+
+// makes `x` reference another object.
+
+// ---
+
+// ### Q11. Is spread syntax a deep copy?
+
+// **Your example:**
+
+// ```js
+// const user = {
+//     name: "Bhavya",
+//     address: {
+//         city: "Ahmedabad"
+//     }
+// };
+
+// const copy = { ...user };
+
+// copy.name = "Rahul";
+// copy.address.city = "Mumbai";
+// ```
+
+// Correct:
+
+// ```js
+// console.log(user.name);          // Bhavya
+// console.log(user.address.city);  // Mumbai
+// ```
+
+// Why?
+
+// ```text
+// copy
+//  ├── name → independent value
+//  └── address ─────┐
+//                   ↓
+//              same object
+// ```
+
+// Spread creates a **shallow copy**, not a deep copy.
+
+// ---
+
+// # 2. Type Coercion Questions
+
+// You also worked through these today.
+
+// ### Q12. What is:
+
+// ```js
+// 5 + "5"
+// ```
+
+// Answer:
+
+// ```text
+// "55"
+// ```
+
+// `+` can perform string concatenation.
+
+// ---
+
+// ### Q13. What is:
+
+// ```js
+// 5 - "5"
+// ```
+
+// Answer:
+
+// ```text
+// 0
+// ```
+
+// `-` performs numeric coercion.
+
+// ---
+
+// ### Q14.
+
+// ```js
+// true + 1
+// ```
+
+// Answer:
+
+// ```text
+// 2
+// ```
+
+// `true` is converted to `1`.
+
+// ---
+
+// ### Q15.
+
+// ```js
+// false + 10
+// ```
+
+// Answer:
+
+// ```text
+// 10
+// ```
+
+// `false` → `0`.
+
+// ---
+
+// ### Q16.
+
+// ```js
+// null + 1
+// ```
+
+// Answer:
+
+// ```text
+// 1
+// ```
+
+// For numeric conversion:
+
+// ```text
+// null → 0
+// ```
+
+// ---
+
+// ### Q17.
+
+// ```js
+// undefined + 1
+// ```
+
+// Answer:
+
+// ```text
+// NaN
+// ```
+
+// Not an exception.
+
+// ---
+
+// ### Q18.
+
+// ```js
+// "5" == 5
+// "5" === 5
+// ```
+
+// Answer:
+
+// ```text
+// true
+// false
+// ```
+
+// `==` allows type coercion.
+
+// `===` requires same type and same value.
+
+// ---
+
+// ### Q19.
+
+// ```js
+// Boolean("0")
+// ```
+
+// Answer:
+
+// ```text
+// true
+// ```
+
+// Because a non-empty string is truthy.
+
+// ---
+
+// ### Q20.
+
+// ```js
+// "0" == false
+// ```
+
+// Answer:
+
+// ```text
+// true
+// ```
+
+// This is one of the weird coercion cases.
+
+// ---
+
+// ### Q21.
+
+// ```js
+// [] == false
+// ```
+
+// Answer:
+
+// ```text
+// true
+// ```
+
+// Simplified coercion:
+
+// ```text
+// [] → ""
+// "" → 0
+// false → 0
+
+// 0 == 0
+// → true
+// ```
+
+// ---
+
+// ### Q22.
+
+// ```js
+// null == undefined
+// null === undefined
+// ```
+
+// Answer:
+
+// ```text
+// true
+// false
+// ```
+
+// Loose equality has a special rule for `null` and `undefined`.
+
+// ---
+
+// ### Q23.
+
+// ```js
+// [] + []
+// ```
+
+// Answer:
+
+// ```text
+// ""
+// ```
+
+// Arrays undergo primitive conversion and ultimately become strings in this operation.
+
+// ---
+
+// ### Q24.
+
+// ```js
+// true + true
+// ```
+
+// Answer:
+
+// ```text
+// 2
+// ```
+
+// Both booleans become numbers.
+
+// ---
+
+// ### Q25.
+
+// ```js
+// [1] == 1
+// ```
+
+// Answer:
+
+// ```text
+// true
+// ```
+
+// The array undergoes coercion.
+
+// ---
+
+// ### Q26.
+
+// ```js
+// [1, 2] == "1,2"
+// ```
+
+// Answer:
+
+// ```text
+// true
+// ```
+
+// The array's primitive/string representation is `"1,2"`.
+
+// ---
+
+// ### Q27.
+
+// ```js
+// null == 0
+// ```
+
+// Answer:
+
+// ```text
+// false
+// ```
+
+// Important interview trap.
+
+// Although:
+
+// ```js
+// Number(null) === 0
+// ```
+
+// loose equality has special handling for `null`.
+
+// ---
+
+// # 3. `Object.is()` Questions
+
+// ### Q28.
+
+// ```js
+// NaN === NaN
+// Object.is(NaN, NaN)
+// ```
+
+// Answer:
+
+// ```text
+// false
+// true
+// ```
+
+// ---
+
+// ### Q29.
+
+// ```js
+// 0 === -0
+// Object.is(0, -0)
+// ```
+
+// Answer:
+
+// ```text
+// true
+// false
+// ```
+
+// So:
+
+// ```text
+// ===       Object.is()
+
+// NaN/NaN   false       true
+// 0/-0      true        false
+// ```
+
+// ---
+
+// # 4. Operators & Conditions
+
+// ### Q30.
+
+// ```js
+// 2 + 3 * 4
+// ```
+
+// **Your answer:** Correct.
+
+// ```text
+// 14
+// ```
+
+// Because multiplication has higher precedence:
+
+// ```js
+// 2 + (3 * 4)
+// ```
+
+// ---
+
+// ### Q31.
+
+// ```js
+// (2 + 3) * 4
+// ```
+
+// **Your answer:** Correct.
+
+// ```text
+// 20
+// ```
+
+// Parentheses override normal precedence.
+
+// ---
+
+// ### Q32.
+
+// ```js
+// 0 && 100
+// ```
+
+// **Your answer:** Correct.
+
+// ```text
+// 0
+// ```
+
+// `&&` returns the first falsy operand.
+
+// `100` isn't evaluated.
+
+// ---
+
+// ### Q33.
+
+// ```js
+// let x = "Hello";
+
+// x || "Guest"
+// ```
+
+// **Your answer:** Initially incorrect.
+
+// Correct:
+
+// ```text
+// "Hello"
+// ```
+
+// Because `"Hello"` is truthy.
+
+// ```text
+// truthy || anything
+// → first value
+// ```
+
+// ---
+
+// ### Q34.
+
+// ```js
+// 0 || 100
+// 0 ?? 100
+// ```
+
+// Correct:
+
+// ```text
+// 100
+// 0
+// ```
+
+// Because:
+
+// ```text
+// || → truthiness
+// ?? → null/undefined
+// ```
+
+// ---
+
+// ### Q35. Increment operators
+
+// ```js
+// let x = 10;
+
+// console.log(x++ + ++x);
+// ```
+
+// **Your answer:** Initially `21`.
+
+// Correct:
+
+// ```text
+// 22
+// ```
+
+// Step by step:
+
+// ```text
+// x = 10
+
+// x++
+// → returns 10
+// → x becomes 11
+
+// ++x
+// → x becomes 12
+// → returns 12
+
+// 10 + 12
+// → 22
+// ```
+
+// Final:
+
+// ```text
+// x = 12
+// ```
+
+// ---
+
+// ### Q36. `NaN` and `Object.is`
+
+// You correctly answered:
+
+// ```js
+// NaN === NaN              // false
+// Object.is(NaN, NaN)      // true
+// 0 === -0                 // true
+// Object.is(0, -0)         // false
+// ```
+
+// ✅ All correct.
+
+// ---
+
+// # 5. Logical Operator Evaluation
+
+// ### Q37.
+
+// ```js
+// a && b || c
+// ```
+
+// What does JavaScript evaluate first?
+
+// **Answer:**
+
+// Because `&&` has higher precedence:
+
+// ```js
+// (a && b) || c
+// ```
+
+// ---
+
+// ### Q38.
+
+// For:
+
+// ```js
+// a && b || c
+// ```
+
+// what happens if `a` is falsy?
+
+// **Answer:**
+
+// ```js
+// a && b
+// ```
+
+// short-circuits.
+
+// Then:
+
+// ```js
+// a || c
+// ```
+
+// so `c` is evaluated.
+
+// ---
+
+// ### Q39.
+
+// What happens if `a` is truthy and `b` is truthy?
+
+// ```js
+// a && b || c
+// ```
+
+// becomes:
+
+// ```js
+// b || c
+// ```
+
+// Since `b` is truthy, `c` isn't evaluated.
+
+// ---
+
+// ### Q40. Prior challenge
+
+// ```js
+// let x = 10;
+
+// const result = false && x++ || x++;
+
+// console.log(result);
+// console.log(x);
+// ```
+
+// Correct:
+
+// ```text
+// 10
+// 11
+// ```
+
+// Why?
+
+// ```text
+// false && x++
+// ```
+
+// short-circuits, so the first `x++` doesn't execute.
+
+// Then:
+
+// ```text
+// false || x++
+// ```
+
+// so the second `x++` executes.
+
+// It returns `10`, then increments `x` to `11`.
+
+// ---
+
+// # 6. Optional Chaining `?.`
+
+// This was your most recent topic.
+
+// ### Q41.
+
+// ```js
+// let user = null;
+
+// console.log(user?.name);
+// ```
+
+// Correct:
+
+// ```text
+// undefined
+// ```
+
+// No TypeError.
+
+// ---
+
+// ### Q42.
+
+// ```js
+// let user = {
+//     name: "Bhavya"
+// };
+
+// console.log(user?.name);
+// ```
+
+// Correct:
+
+// ```text
+// Bhavya
+// ```
+
+// ---
+
+// ### Q43.
+
+// ```js
+// let user = {
+//     profile: null
+// };
+
+// console.log(user?.profile?.name);
+// ```
+
+// Correct:
+
+// ```text
+// undefined
+// ```
+
+// Not `null`.
+
+// The optional chain encounters `null` and produces `undefined`.
+
+// ---
+
+// ### Q44.
+
+// ```js
+// let user = {
+//     age: 0
+// };
+
+// console.log(user?.age || 18);
+// console.log(user?.age ?? 18);
+// ```
+
+// **Your answer:** Correct.
+
+// ```text
+// 18
+// 0
+// ```
+
+// ---
+
+// ### Q45. `&&` vs `?.`
+
+// You were asked to understand:
+
+// ```js
+// user && user.name
+// ```
+
+// versus:
+
+// ```js
+// user?.name
+// ```
+
+// Core difference:
+
+// ```text
+// &&
+// → checks truthiness
+
+// ?.
+// → checks specifically null/undefined
+// ```
+
+// So they aren't exactly equivalent.
+
+// ---
+
+// ### Q46. API example
+
+// ```js
+// const response = {
+//     data: {
+//         user: null
+//     }
+// };
+
+// const name =
+//     response?.data?.user?.profile?.name ?? "Guest";
+
+// console.log(name);
+// ```
+
+// Correct answer:
+
+// ```text
+// Guest
+// ```
+
+// Evaluation:
+
+// ```text
+// response
+//  ↓
+// data
+//  ↓
+// user → null
+//  ↓
+// ?. short-circuits
+//  ↓
+// undefined
+//  ↓
+// undefined ?? "Guest"
+//  ↓
+// "Guest"
+// ```
+
+// ---
+
+// # 7. The Most Important Concepts You Learned Today
+
+// If you're preparing for a **deep JavaScript interview**, these are the concepts from today you should be able to explain without memorizing:
+
+// ```text
+// 1. Dynamic typing
+// 2. Primitive vs object values
+// 3. Value copying
+// 4. Object references
+// 5. Object identity
+// 6. Pass-by-value
+// 7. Shallow copying
+// 8. Type coercion
+// 9. ToPrimitive
+// 10. ToNumber
+// 11. ToString
+// 12. ToBoolean
+// 13. == vs ===
+// 14. Object.is()
+// 15. NaN
+// 16. Floating-point numbers
+// 17. Truthy/falsy
+// 18. Operator precedence
+// 19. Short-circuit evaluation
+// 20. Evaluation order
+// 21. Side effects
+// 22. ++ and --
+// 23. && / || / ??
+// 24. Optional chaining ?.
+// 25. ?. with nested objects
+// 26. ?. with arrays
+// 27. ?. with dynamic properties
+// 28. ?. with function calls
+// 29. ?.() vs method?.()
+// 30. ?. + ??
+// 31. ?. vs &&
+// 32. API-response safety
+// ```
+
+// ### Your overall progress today
+
+// You did particularly well on the **conceptual questions** around:
+
+// * dynamic typing
+// * object references
+// * mutation vs reassignment
+// * `NaN`
+// * floating-point behavior
+// * `==` vs `===`
+// * `Object.is()`
+// * operator precedence
+// * short-circuiting
+// * `||` vs `??`
+
+// The areas where you made mistakes were mostly **evaluation tracing**, especially with `++`, `&&`, `||`, and `?.`. That's actually useful for interview preparation because those are exactly the questions that test whether you understand JavaScript's execution rather than just memorizing definitions.
