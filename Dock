@@ -1,0 +1,28 @@
+var-is function scoped it cant be accessed outside function ,if it is 
+declared outside it becomes global scope 
+it can be redeclare reassigned and 
+During execution-context creation, it can be accessed before declring 
+console.log(x)
+var x=10
+in these we get undefinded only var is initialised value is not stored 
+
+let -it is block scoped only access inside a block it can be assiagned but cant be redeclared 
+During execution-context creation, it cant be accessed before declring 
+console.log(x)
+var x=10
+output typeerror
+becaz the let will be stored in tdz temporarily dead zone it cant be accessed
+
+const -is block scoped same as let but cant be reassign it not
+
+shadowing - means if let or const is declared outside block can be recdeclared inside block 
+Because let and const provide:
+
+block scope
+better protection against accidental redeclaration
+clearer intent
+better control over reassignment
+fewer scope-related bugs
+
+hoist - access before declaration as given example var is yes but  const or let is hoisted but they are in tdz at lexical environment
+closures-means inner function can access values which is in outer function but cant be vice-versa
